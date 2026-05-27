@@ -1,0 +1,9 @@
+SESSION 2026-05-28T11:20 | /Users/kim/my-app | feat/payments
+STACK: Next.js TypeScript PostgreSQL Stripe Redis
+DONE: Stripe webhook handler; idempotency key middleware; order status polling
+CHANGED: src/app/api/webhooks/stripe.ts(new); src/middleware/idempotency.ts(new); src/lib/order.ts
+TRIED: Stripe webhook signature in edge runtime(crypto unavailable, falls back to Node runtime)
+DECIDED: store idempotency keys in Redis not DB: TTL handling is native, avoids schema migration
+TODO: handle Stripe dispute webhooks | add webhook replay UI for failed events | load test idempotency under concurrent requests
+OPEN: whether to use Stripe Radar or custom fraud rules for high-value orders
+CTX: Redis TTL for idempotency keys set to 24h per Stripe recommendation; staging Stripe account uses test clock, do not use real timestamps for testing

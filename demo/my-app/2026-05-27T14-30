@@ -1,0 +1,9 @@
+SESSION 2026-05-27T14:30 | /Users/kim/my-app | feat/payments
+STACK: Next.js TypeScript PostgreSQL Stripe
+DONE: Stripe checkout session setup; basic order creation flow
+CHANGED: src/app/api/checkout/route.ts(new); src/lib/order.ts(new); src/types/order.ts(new)
+TRIED: websocket for order status(mobile clients drop WS on background)
+DECIDED: use polling not websocket: simpler, works on all clients, order status changes are infrequent
+TODO: webhook handler | idempotency | order status polling | dispute handling
+OPEN: whether to use Stripe Radar or custom fraud rules; Redis vs DB for idempotency keys
+CTX: Stripe webhook secret in STRIPE_WEBHOOK_SECRET env var (not in .env.example); DB schema frozen until Q3
