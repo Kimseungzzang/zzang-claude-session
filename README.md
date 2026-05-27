@@ -1,5 +1,7 @@
 # zzang-claude-session
 
+[English](README.md) · [한국어](README.ko.md)
+
 Cross-session context storage for Claude Code — part of [zzang-claude-skills](https://github.com/Kimseungzzang/kimseungzzang-claude-skills).
 
 Persists conversation context across sessions and machines. Includes real-time tool-use logging so Claude can recover from mid-task interruptions (token exhaustion, app crashes) — not just clean session ends.
@@ -210,9 +212,6 @@ Machine A                          Machine B
 **Keep your sessions repo private.**
 CURRENT.ctx captures file paths, decisions, API key names, and internal architecture details. Never use a public repo.
 
-**Run `/session-save` before you hit the token limit — not after.**
-Once Claude's context is compacted by the system, fine-grained detail is already gone. Save at natural breakpoints (end of a feature, before switching tasks).
-
 **Don't delete `~/.claude/zzang-ctx/` manually.**
 `task-log.md` lives there and is local-only. If you wipe the folder before running `/session-save`, any unabsorbed task-log entries are gone permanently.
 
@@ -239,12 +238,6 @@ The other machine pulls from GitHub — if you haven't pushed, it will see stale
 
 **Use a dedicated repo just for sessions.**
 Don't reuse an existing repo. The sessions repo accumulates CURRENT.ctx files per project and grows over time; a dedicated repo keeps it clean and easy to audit.
-
-**Keep CTX and OPEN entries terse.**
-These fields accumulate indefinitely. Verbose entries bloat CURRENT.ctx and waste tokens on load. One short sentence per fact is enough — Claude is good at inferring from dense context.
-
-**Add TRIED entries honestly.**
-`TRIED` prevents Claude from suggesting approaches that already failed. The more specific the failure reason, the more useful it is (e.g. `Redis pub/sub(race condition under concurrent writes)` beats just `Redis pub/sub(failed)`).
 
 **For long multi-day tasks, check your TODO list.**
 `/session-save` removes completed TODO items automatically, but open-ended items accumulate. Prune OPEN and TODO manually when they're no longer relevant.
