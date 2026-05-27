@@ -25,9 +25,11 @@ The installer will:
 # end of session (or before token limit)
 /session-save
 
-# start of next session
+# start of next session — run in the project directory you're about to work on
 /session-load
 ```
+
+> `/session-load` loads context for the **current project only** (detected from git root). If you work across multiple projects in a session, run it in each project directory as needed.
 
 > On a new machine: `npx zzang-claude-skills` → `/session-load` — it clones your sessions repo automatically.
 

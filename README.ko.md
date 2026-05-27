@@ -25,9 +25,11 @@ npx zzang-claude-skills
 # 세션 종료 전 (또는 작업 마일스톤마다)
 /session-save
 
-# 새 세션 시작 시 제일 먼저
+# 새 세션 시작 시, 작업할 프로젝트 디렉토리에서 제일 먼저
 /session-load
 ```
+
+> `/session-load`는 **현재 프로젝트만** 로드합니다 (git root 기준). 한 세션에서 여러 프로젝트를 오간다면 각 프로젝트 디렉토리에서 따로 실행하세요.
 
 > 새 머신: `npx zzang-claude-skills` → `/session-load` — 세션 레포를 자동으로 clone합니다.
 
